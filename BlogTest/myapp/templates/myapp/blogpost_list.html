@@ -1,11 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>Posts</h2>
-    <ul>
-        {% for blog_post in object_list %}
-            <li>
-                <a href="{% url 'postdetail' blog_post.pk %}">{{ blog_post.title }}</a>
-            </li>
-        {% endfor %}
-    </ul>
+    <h1>Posts</h1>
+    <div class="container">
+        <div class="row">
+            {% for blog_post in object_list %}
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{blog_post.title}}</h5>
+                        <p class="card-text">{{blog_post.subtitle}}</p>
+                        <a href="{% url 'postdetail' blog_post.pk %}"
+                            target="_blank" 
+                            class="btn btn-primary">Read more</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
