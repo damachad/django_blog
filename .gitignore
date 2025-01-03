@@ -7,4 +7,6 @@ media
 .vscode
 .history
 .env
+.idea
 testdb
+db.sqlite3
