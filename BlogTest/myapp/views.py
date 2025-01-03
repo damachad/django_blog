@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import BlogPost
 
 
@@ -7,3 +6,7 @@ from .models import BlogPost
 class BlogPostListView(ListView):
     model = BlogPost
     
+
+class BlogPostDetailView(DetailView):
+    model = BlogPost
+
