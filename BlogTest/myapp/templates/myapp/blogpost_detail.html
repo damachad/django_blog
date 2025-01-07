@@ -8,6 +8,17 @@
     <p>Author: {{ object.author }}</p>
     <p>{{ object.body }}</p>
 </br>
+{% if user.is_authenticated and user == object.author %}
+<a href="{% url 'editpost' object.pk %}" 
+    target="_self" 
+    class="btn btn-warning">Edit
+</a>
+<a href="{% url 'deletepost' object.pk %}" 
+    target="_self" 
+    class="btn btn-danger">Delete
+</a>
+{% endif %}
+</br>
 <a href="{% url 'home' %}" 
     target="_self" 
     class="btn btn-primary">Home
