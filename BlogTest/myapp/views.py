@@ -1,12 +1,11 @@
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
-from .models import BlogPost, User
+from .models import BlogPost
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-# Create your views here.
 class BlogPostListView(ListView):
     model = BlogPost
     
@@ -22,6 +21,8 @@ class BlogPostCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+    
+    success_url = reverse_lazy("home")
 
 
 class BlogPostUpdateView(LoginRequiredMixin, UpdateView):
