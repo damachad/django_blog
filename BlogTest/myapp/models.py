@@ -6,8 +6,20 @@ class BlogPost(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     title = models.CharField(max_length=250, unique=True)
     subtitle = models.CharField(max_length=250)
-    date = models.DateField(auto_now_add=True)
+    creation_date = models.DateTimeField(auto_now_add=True)
+    modification_date = models.DateTimeField(auto_now=True)
     body = models.TextField()
 
     def __str__(self):
         return self.title
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(BlogPost, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+    creation_date = models.DateTimeField(auto_now_add=True)
+    modification_date = models.DateTimeField(auto_now=True)
+    content = models.TextField(max_length=250)
+
+    def __str__(self):
+        return f"Comment by {self.author} on {self.post}"
