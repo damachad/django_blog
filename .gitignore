@@ -8,5 +8,4 @@ media
 .history
 .env
 .idea
-testdb
 db.sqlite3
