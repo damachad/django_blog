@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block title %}Edit Post{% endblock %}
 {% block content %}
 <h2>Edit Blog Post</h2>
 <form method="post">
@@ -8,7 +9,7 @@
 </form>
 </br>
 <a href="{% url 'home' %}" 
-    target="_blank" 
+    target="_self"
     class="btn btn-primary">Home
 </a>
 {% endblock %}

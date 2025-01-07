@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block title %}{{ object.title }}{% endblock %}
 {% block content %}
     <h1>{{ object.title }}</h1>
     <h3>{{ object.subtitle }}</h3>
@@ -8,7 +9,7 @@
     <p>{{ object.body }}</p>
 </br>
 <a href="{% url 'home' %}" 
-    target="_blank" 
+    target="_self" 
     class="btn btn-primary">Home
 </a>
 {% endblock %}
