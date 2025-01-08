@@ -49,8 +49,10 @@ class BlogPostViewTest(TestCase):
     def test_blog_post_update_view(self):
         response = self.client.post(reverse('editpost', args=[self.post.id]), {
             'title': 'Updated Title',
+            'subtitle': 'Updated Subtitle',
+            'body': 'Updated Body content',
         })
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
         self.post.refresh_from_db()
         self.assertEqual(self.post.title, "Updated Title")
 

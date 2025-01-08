@@ -7,5 +7,5 @@ This project makes use of Django to create a simple Blog website, with users bei
 - manage their profile   
    
 ## TODOs:
-- Fix Blog title saving (when editing the first time, the full title is not displayed)
+- Improve date display in posts (edited)
 - Add field to keep track of number of posts and comments
