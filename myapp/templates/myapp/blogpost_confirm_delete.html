@@ -4,7 +4,7 @@
 <h1>Deleting Post</h1>
 <form method="post">
 	{% csrf_token %}
-    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <p>Are you sure you want to delete the comment "{{ object.content }}" by {{ object.author }}?</p>
     {{ form }}
     <input type="submit" value="Confirm">
 </form>

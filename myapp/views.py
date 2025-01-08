@@ -1,7 +1,7 @@
 from django.views.generic import ListView, DetailView, FormView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.urls import reverse_lazy, reverse
-from .models import BlogPost
+from django.urls import reverse_lazy
+from .models import BlogPost, Comment
 from .forms import CommentForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -10,6 +10,19 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class BlogPostListView(ListView):
     model = BlogPost
     
+
+class CommentDeleteView(LoginRequiredMixin, DeleteView):
+    model = Comment
+
+    def get_queryset(self):
+        """
+        Restrict the queryset to comments on posts authored by the logged-in user.
+        """
+        return Comment.objects.filter(post__author=self.request.user)
+
+    def get_success_url(self):
+        return reverse_lazy('postdetail', kwargs={'pk': self.get_object().post.pk})
+
 
 class BlogPostDetailView(DetailView, FormView):
     model = BlogPost
