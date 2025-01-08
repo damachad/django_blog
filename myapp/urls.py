@@ -11,4 +11,5 @@ urlpatterns = [
 	path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='comment_delete'),
 	path('profile/', CustomUserDetailView.as_view(), name='profile_detail'),
 	path('profile/edit', CustomUserUpdateView.as_view(), name='profile_edit'),
+	path('password/change/', PasswordChangeView.as_view(), name='password_change'),
 ]

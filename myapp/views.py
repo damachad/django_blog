@@ -4,6 +4,8 @@ from django.urls import reverse_lazy
 from .models import BlogPost, Comment, CustomUser
 from .forms import CommentForm, CustomUserChangeForm, CustomUserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.views import PasswordChangeView
 
 
 class BlogPostListView(ListView):
@@ -90,3 +92,7 @@ class CustomUserUpdateView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         return self.request.user
     
+class CustomPasswordChangeView(PasswordChangeView):
+    form_class = PasswordChangeForm
+    template_name = 'password_change.html'
+    success_url = '/profile/edit/'

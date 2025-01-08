@@ -7,6 +7,6 @@ This project makes use of Django to create a simple Blog website, with users bei
 - manage their profile   
    
 ## TODOs:
-- Add password reset option in edit profile
+- Fix password reset template
 - Add tests
 - Add field to keep track of number of posts and comments
