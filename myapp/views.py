@@ -60,7 +60,9 @@ class BlogPostCreateView(LoginRequiredMixin, CreateView):
 class BlogPostUpdateView(LoginRequiredMixin, UpdateView):
     model = BlogPost
     fields = ['title', 'subtitle', 'body']
-    success_url = reverse_lazy("home")
+
+    def get_success_url(self):
+        return reverse_lazy("postdetail", kwargs={'pk': self.get_object().pk})
 
 
 class BlogPostDeleteView(LoginRequiredMixin, DeleteView):
