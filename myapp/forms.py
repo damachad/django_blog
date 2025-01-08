@@ -1,5 +1,6 @@
 from django import forms
-from .models import Comment, Profile
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm
+from .models import Comment, CustomUser
 
 class CommentForm(forms.ModelForm):
     class Meta:
@@ -9,7 +10,13 @@ class CommentForm(forms.ModelForm):
             'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
         }
 
-class ProfileForm(forms.ModelForm):
+class CustomUserChangeForm(UserChangeForm):
     class Meta:
-        model = Profile
-        fields = ['profile_picture']
+        model = CustomUser
+        fields = ['username', 'email', 'first_name', 'last_name', 'profile_picture', 'bio']
+
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'email', 'first_name', 'last_name', 'profile_picture']
+        

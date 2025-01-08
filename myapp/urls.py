@@ -9,6 +9,6 @@ urlpatterns = [
 	path("posts/<int:pk>/edit", BlogPostUpdateView.as_view(), name="editpost"),
 	path("posts/<int:pk>/delete", BlogPostDeleteView.as_view(), name="deletepost"),
 	path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='comment_delete'),
-	path('profile/', ProfileDetailView.as_view(), name='profile_detail'),
-	path('profile/edit', ProfileUpdateView.as_view(), name='profile_edit'),
+	path('profile/', CustomUserDetailView.as_view(), name='profile_detail'),
+	path('profile/edit', CustomUserUpdateView.as_view(), name='profile_edit'),
 ]

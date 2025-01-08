@@ -1,10 +1,8 @@
 from django.views.generic import ListView, DetailView, FormView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
-from django.contrib.auth.models import User
-from .models import BlogPost, Comment
-from .forms import CommentForm, ProfileForm
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from .models import BlogPost, Comment, CustomUser
+from .forms import CommentForm, CustomUserChangeForm, CustomUserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -69,12 +67,12 @@ class BlogPostDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class UserCreateView(CreateView):
-    form_class = UserCreationForm
+    form_class = CustomUserCreationForm
     template_name = 'registration/register.html'
     success_url = reverse_lazy("login")
 
-class ProfileDetailView(LoginRequiredMixin, DetailView):
-    model = User
+class CustomUserDetailView(LoginRequiredMixin, DetailView):
+    model = CustomUser
     template_name = 'myapp/profile_detail.html'
 
     def get_object(self, queryset=None):
@@ -83,10 +81,10 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
         """
         return self.request.user
 
-class ProfileUpdateView(LoginRequiredMixin, UpdateView):
-    model = User
+class CustomUserUpdateView(LoginRequiredMixin, UpdateView):
+    model = CustomUser
     template_name = 'myapp/profile_edit.html'
-    form_class = ProfileForm
+    form_class = CustomUserChangeForm
     success_url = reverse_lazy('profile_detail')
 
     def get_object(self, queryset=None):
