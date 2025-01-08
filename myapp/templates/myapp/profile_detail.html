@@ -2,6 +2,8 @@
 {% block title %}{{ object.username }}'s Profile{% endblock %}
 {% block content %}
 <h2>Your Profile</h2>
+<img src="{{ user.profile.profile_picture.url }}" alt="Profile Picture" width="150" height="150" class="rounded-circle">
+
 <ul>
     <li><strong>Username:</strong> {{ object.username }}</li>
     <li><strong>Email:</strong> {{ object.email }}</li>

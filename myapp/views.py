@@ -3,8 +3,8 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from .models import BlogPost, Comment
-from .forms import CommentForm
-from django.contrib.auth.forms import UserCreationForm
+from .forms import CommentForm, ProfileForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -85,13 +85,10 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = User
-    template_name = 'myapp/profile.html'
-    fields = ['username', 'email', 'first_name', 'last_name']
+    template_name = 'myapp/profile_edit.html'
+    form_class = ProfileForm
     success_url = reverse_lazy('profile_detail')
 
     def get_object(self, queryset=None):
-        """
-        Ensure users can only edit their own profile.
-        """
         return self.request.user
     
