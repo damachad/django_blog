@@ -1,6 +1,7 @@
 from django.views.generic import ListView, DetailView, FormView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
+from django.contrib.auth.models import User
 from .models import BlogPost, Comment
 from .forms import CommentForm
 from django.contrib.auth.forms import UserCreationForm
@@ -71,3 +72,26 @@ class UserCreateView(CreateView):
     form_class = UserCreationForm
     template_name = 'registration/register.html'
     success_url = reverse_lazy("login")
+
+class ProfileDetailView(LoginRequiredMixin, DetailView):
+    model = User
+    template_name = 'myapp/profile_detail.html'
+
+    def get_object(self, queryset=None):
+        """
+        Ensure the logged-in user can view their own profile.
+        """
+        return self.request.user
+
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = User
+    template_name = 'myapp/profile.html'
+    fields = ['username', 'email', 'first_name', 'last_name']
+    success_url = reverse_lazy('profile_detail')
+
+    def get_object(self, queryset=None):
+        """
+        Ensure users can only edit their own profile.
+        """
+        return self.request.user
+    
