@@ -10,5 +10,9 @@
     <li><strong>First Name:</strong> {{ object.first_name }}</li>
     <li><strong>Last Name:</strong> {{ object.last_name }}</li>
 </ul>
+<ul>
+    <li><strong>Number of posts:</strong> {{ object.posts.count }}</li>
+    <li><strong>Number of comments:</strong> {{ object.comments.count }}</li>
+</ul>
 <a href="{% url 'profile_edit' %}" class="btn btn-primary">Edit Profile</a>
 {% endblock %}
