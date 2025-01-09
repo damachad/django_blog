@@ -7,4 +7,4 @@ This project makes use of Django to create a simple Blog website, with users bei
 - manage their profile   
    
 ## TODOs:
-- Add list of links to posts in user profile
+- Improve site visuals (Add background image, some color and styling)
