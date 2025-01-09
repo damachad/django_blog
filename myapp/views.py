@@ -83,12 +83,6 @@ class UserCreateView(CreateView):
 class CustomUserDetailView(LoginRequiredMixin, DetailView):
     model = CustomUser
     template_name = 'myapp/profile_detail.html'
-
-    def get_object(self, queryset=None):
-        """
-        Ensure the logged-in user can view their own profile.
-        """
-        return self.request.user
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -100,10 +94,12 @@ class CustomUserUpdateView(LoginRequiredMixin, UpdateView):
     model = CustomUser
     template_name = 'myapp/profile_edit.html'
     form_class = CustomUserChangeForm
-    success_url = reverse_lazy('profile_detail')
 
     def get_object(self, queryset=None):
         return self.request.user
+    
+    def get_success_url(self):
+        return reverse_lazy("profile_detail", kwargs={'pk': self.object.pk})
     
 class CustomPasswordChangeView(PasswordChangeView):
     form_class = PasswordChangeForm

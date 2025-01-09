@@ -88,7 +88,7 @@ class ProfileViewTest(TestCase):
 
     def test_profile_detail(self):
         self.client.login(username='testuser', password='1u2s3e4r5')
-        response = self.client.get(reverse('profile_detail'))
+        response = self.client.get(reverse('profile_detail', args=[self.user.id]))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'testuser')
 

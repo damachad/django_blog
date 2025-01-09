@@ -7,8 +7,10 @@
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{blog_post.title}}</h5>
-                        <p class="card-text">{{blog_post.subtitle}}</p>
+                        <h3 class="card-title">{{blog_post.title}}</h3>
+                        <h5 class="card-text">{{blog_post.subtitle}}</h5>
+                        <p class="card-text">{{blog_post.creation_date|date:"M d, Y"}} by 
+                            <a href="{% url 'profile_detail' blog_post.author.pk %}">{{blog_post.author}}</a></p>
                         <a href="{% url 'postdetail' blog_post.pk %}"
                             target="_self" 
                             class="btn btn-primary">Read more</a>

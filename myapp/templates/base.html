@@ -30,9 +30,8 @@
                 </div>
                 <div class="d-flex align-items-center">
                     {% if user.is_authenticated %}
-                    <!-- TODO: Fix Logout button and white text later -->
                     <span class="navbar-text text-white me-2">Logged in as 
-                        <a href="{% url 'profile_detail' %}">{{ user.username }}</a> | </span>
+                        <a href="{% url 'profile_detail' user.pk %}">{{ user.username }}</a> | </span>
                     <form method="post" action="{% url 'logout' %}" class="d-inline">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-link nav-link text-white p-0">Logout</button>
