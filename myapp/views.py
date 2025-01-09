@@ -11,6 +11,12 @@ from datetime import timedelta
 
 class BlogPostListView(ListView):
     model = BlogPost
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        posts_by_date = BlogPost.objects.all().order_by('-creation_date')
+        context['posts_by_date'] = posts_by_date
+        return context
     
 
 class CommentDeleteView(LoginRequiredMixin, DeleteView):

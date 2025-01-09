@@ -1,9 +1,8 @@
-body {
-  background-color: rgb(214, 193, 146);
+.card {
+  border-radius: 10px; /* Rounded corners */
+  overflow: hidden; /* Clean edges */
 }
-h1 {
-  color: rgb(116, 49, 23);
-}
-p {
-  color: rgb(168, 87, 40);
+.card-title {
+  font-weight: bold;
+  font-size: 1.5rem;
 }
