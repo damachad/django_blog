@@ -6,6 +6,7 @@ from .forms import CommentForm, CustomUserChangeForm, CustomUserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
+from datetime import timedelta
 
 
 class BlogPostListView(ListView):
@@ -33,6 +34,10 @@ class BlogPostDetailView(DetailView, FormView):
         context = super().get_context_data(**kwargs)
         context['comments'] = self.object.comments.all()
         context['form'] = self.get_form()
+
+        time_difference = self.object.modification_date - self.object.creation_date
+        context['edited_post'] = time_difference > timedelta(seconds=1)
+
         return context
 
     def form_valid(self, form):

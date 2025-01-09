@@ -4,11 +4,14 @@
     <h1>{{ object.title }}</h1>
     <h3>{{ object.subtitle }}</h3>
 </br>
-    <p>Date: {{ object.creation_date }}</p>
+    <p>Created at: {{ object.creation_date }}</p>
     <p>Author: {{ object.author }}</p>
     <p>{{ object.body }}</p>
+    {% if edited_post %}
+    <p class="text-muted">Edited at: {{ object.modification_date }}</p>
+    {% endif %}
+    <hr>
 </br>
-<hr>
 <h2>Comments</h2>
 <div>
     {% for comment in comments %}
