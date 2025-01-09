@@ -10,6 +10,15 @@
     <li><strong>First Name:</strong> {{ object.first_name }}</li>
     <li><strong>Last Name:</strong> {{ object.last_name }}</li>
 </ul>
+<h4>Created Posts</h4>
+<ul>
+    {% for post in posts %}
+    <li><a href="{% url 'postdetail' post.pk %}"><strong>{{ post.title }}</strong></a></li>
+    {% empty %}
+    <span>No posts yet!</span>
+    {% endfor %}
+</ul>
+<h4>Stats</h4>
 <ul>
     <li><strong>Number of posts:</strong> {{ object.posts.count }}</li>
     <li><strong>Number of comments:</strong> {{ object.comments.count }}</li>

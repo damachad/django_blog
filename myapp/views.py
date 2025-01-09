@@ -89,6 +89,12 @@ class CustomUserDetailView(LoginRequiredMixin, DetailView):
         Ensure the logged-in user can view their own profile.
         """
         return self.request.user
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['posts'] = self.object.posts.all()
+
+        return context
 
 class CustomUserUpdateView(LoginRequiredMixin, UpdateView):
     model = CustomUser
