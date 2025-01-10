@@ -1,6 +1,6 @@
 ## TODOs:
 - Improve site visuals (Add background image, some color and styling)
-- Allow editing of own comments
+- Add more tests
 
 <hr>
 
