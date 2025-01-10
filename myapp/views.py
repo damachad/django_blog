@@ -19,6 +19,21 @@ class BlogPostListView(ListView):
         return context
     
 
+class CommentUpdateView(LoginRequiredMixin, UpdateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'myapp/comment_edit.html'
+
+    def get_queryset(self):
+        """
+        Limit editing to the author of the comment.
+        """
+        return Comment.objects.filter(author=self.request.user)
+
+    def get_success_url(self):
+        return reverse_lazy('postdetail', kwargs={'pk': self.get_object().post.pk})
+
+
 class CommentDeleteView(LoginRequiredMixin, DeleteView):
     model = Comment
 
@@ -40,6 +55,10 @@ class BlogPostDetailView(DetailView, FormView):
         context = super().get_context_data(**kwargs)
         context['comments'] = self.object.comments.all()
         context['form'] = self.get_form()
+        context['comment_forms'] = {
+            comment.pk: CommentForm(instance=comment)
+            for comment in self.object.comments.filter(author=self.request.user)
+        }
 
         time_difference = self.object.modification_date - self.object.creation_date
         context['edited_post'] = time_difference > timedelta(seconds=1)
