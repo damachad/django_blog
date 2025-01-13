@@ -1,6 +1,6 @@
-# 📝 Django Blog App
+# 📝 Django Blog
 
-Welcome to the **Django Blog App**! This app allows users to create posts, interact with others' posts, and manage their profiles. 🚀
+This app made with Django allows users to create posts, interact with others' posts, and manage their profiles. 🚀
 
 ### Features 🌟
 
@@ -33,11 +33,11 @@ Welcome to the **Django Blog App**! This app allows users to create posts, inter
 
 1. **Clone the repository**:
 ```bash
-git clone https://github.com/damachad/django-blog-app.git
+git clone https://github.com/damachad/django_blog.git
 ```
 2. **Navigate into the project directory:**:
 ```bash
-cd django-blog-app
+cd django_blog
 ```
 3. **Set up a virtual environment:**
 ```bash
