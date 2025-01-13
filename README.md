@@ -15,6 +15,7 @@ This app made with Django allows users to create posts, interact with others' po
   
 - **Commenting**: 
   - Add comments to posts 📝.
+  - Edit your comments 
   - Delete comments to your posts, if needed 🚮.
   
 - **User Profiles**: 
