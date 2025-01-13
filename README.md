@@ -1,9 +1,3 @@
-## TODOs:
-- Improve site visuals (Add background image, some color and styling)
-- Add more tests
-
-<hr>
-
 # 📝 Django Blog App
 
 Welcome to the **Django Blog App**! This app allows users to create posts, interact with others' posts, and manage their profiles. 🚀
@@ -39,7 +33,7 @@ Welcome to the **Django Blog App**! This app allows users to create posts, inter
 
 1. **Clone the repository**:
 ```bash
-git clone https://github.com/yourusername/django-blog-app.git
+git clone https://github.com/damachad/django-blog-app.git
 ```
 2. **Navigate into the project directory:**:
 ```bash
@@ -48,7 +42,7 @@ cd django-blog-app
 3. **Set up a virtual environment:**
 ```bash
 python -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+source venv/bin/activate
 ```
 4. **Install dependencies:**
 ```bash
