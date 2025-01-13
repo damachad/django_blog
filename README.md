@@ -57,3 +57,13 @@ python manage.py migrate
 python manage.py runserver
 ```
 7. **Visit http://localhost:8000 to see the app in action!** 🌍
+
+### Demo 🖥️
+
+<div class="image-gallery">
+  <img src="https://github.com/user-attachments/assets/fa336727-47d1-4606-95bf-3a84bd071d8d" alt="Dashboard" width="500">
+  <img src="https://github.com/user-attachments/assets/1580cfd7-deb4-4b5c-a863-77442f2c40ad" alt="Profile view" width="500">
+  <img src="https://github.com/user-attachments/assets/49501c3f-f2e3-4138-ade8-73f38a5830c3" alt="Example post" width="500">
+  <img src="https://github.com/user-attachments/assets/08a51e6e-8707-4eb7-bb34-9722239e9585" alt="Example post and comments" width="500">
+</div>
+
