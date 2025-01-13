@@ -17,7 +17,7 @@
     <h3>{{ object.subtitle }}</h3>
 </br>
     <p>Created at: {{ object.creation_date }}</p>
-    <p>Author: {{ object.author }}</p>
+    <p>Author: <a href="{% url 'profile_detail' object.author.pk %}">{{ object.author }}</a></p>
     <p>{{ object.body }}</p>
     {% if edited_post %}
     <p class="text-muted">Edited at: {{ object.modification_date }}</p>
@@ -27,7 +27,7 @@
 <h2>Comments</h2>
 <div>
     {% for comment in comments %}
-    <p><strong>{{ comment.author }}</strong> ({{ comment.creation_date|date:"F j, Y, g:i a" }}):</p>
+    <p><a href="{% url 'profile_detail' comment.author.pk %}"><strong>{{ comment.author }}</strong></a> ({{ comment.creation_date|date:"F j, Y, g:i a" }}):</p>
     <p>{{ comment.content }}</p>
         {% if user == object.author %}
             <a href="{% url 'comment_delete' comment.pk %}" class="btn btn-danger btn-sm">Delete</a>
