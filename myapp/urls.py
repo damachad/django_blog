@@ -1,16 +1,13 @@
-from django.urls import path
-from .views import *
+from django.urls import path, include, re_path
+from rest_framework.routers import DefaultRouter
+from .views import CustomUserViewSet, BlogPostViewSet, CommentViewSet, spa_index
+
+router = DefaultRouter()
+router.register(r'users', CustomUserViewSet)
+router.register(r'posts', BlogPostViewSet)
+router.register(r'comments', CommentViewSet)
 
 urlpatterns = [
-    path("", BlogPostListView.as_view(), name="home"),
-	path("register", UserCreateView.as_view(), name="register"),
-	path("posts/<int:pk>", BlogPostDetailView.as_view(), name="postdetail"),
-	path("posts/add", BlogPostCreateView.as_view(), name="addpost"),
-	path("posts/<int:pk>/edit", BlogPostUpdateView.as_view(), name="editpost"),
-	path("posts/<int:pk>/delete", BlogPostDeleteView.as_view(), name="deletepost"),
-	path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='comment_delete'),
-	path('comment/<int:pk>/edit/', CommentUpdateView.as_view(), name='comment_update'),
-	path('profile/<int:pk>', CustomUserDetailView.as_view(), name='profile_detail'),
-	path('profile/edit', CustomUserUpdateView.as_view(), name='profile_edit'),
-	path('password/change/', CustomPasswordChangeView.as_view(), name='password_changes'),
+    path('api/', include(router.urls)),
+	re_path(r'^.*$', spa_index, name='spa_index'),
 ]

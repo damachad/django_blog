@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django Blog SPA</title>
+    <script src="{% static 'js/main.js' %}" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Blog</h1>
+        <nav>
+            <a href="#" id="view-posts">Posts</a>
+            <a href="#" id="create-post">Create Post</a>
+            <a href="#" id="edit-profile">Edit Profile</a>
+        </nav>
+    </header>
+    <main id="content"></main>
+</body>
+</html>

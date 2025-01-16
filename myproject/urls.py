@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('myapp.urls')),
 	path('', include('django.contrib.auth.urls')),
 	path('accounts/', include('django.contrib.auth.urls')),
+    path('api-auth/', include('rest_framework.urls')),
 ]
 
 
