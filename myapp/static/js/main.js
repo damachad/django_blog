@@ -108,6 +108,24 @@ function createPostElement(post) {
     return postDiv;
 }
 
+const fetchComments = async (postId) => {
+    try {
+        const response = await fetch(`/api/comments/by-post/${postId}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
+        const comments = await response.json();
+        return comments;
+    } catch (error) {
+        console.error('Failed to fetch comments:', error);
+    }
+};
+
 async function loadPostDetail(params) {
     if (!params || params.length < 2) {
         console.error('Invalid params:', params);
@@ -121,11 +139,16 @@ async function loadPostDetail(params) {
 
     try {
         const response = await fetch(`/api/posts/${postId}/`);
+        const comments = fetchComments(postId);
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         const post = await response.json();
+
+        const sanitizedComments = comments.length > 0
+        ? comments.map(comment => `<li>${sanitize(comment.content)}</li>`).join('')
+        : '<li>No comments yet. Be the first to comment!</li>';
 
         content.innerHTML = `
             <div class="container">
@@ -134,9 +157,13 @@ async function loadPostDetail(params) {
                         <h1>${sanitize(post.title || 'No Title')}</h1>
                         <h3>${sanitize(post.subtitle || 'No Subtitle')}</h3>
                         <br />
-                        <p>Created at: ${sanitize(post.creation_date || 'Unknown')} by 
+                        <p>Created at: ${sanitize(formatDate(post.creation_date) || 'Unknown')} by 
                         <strong>${sanitize(post.author || 'Anonymous')}</strong></p>
                         <p>${sanitize(post.body || 'No content available.')}</p>
+                        <h2>Comments</h2>
+                        <ul>
+                            ${sanitizedComments}
+                        </ul>
                     </div>
                 </div>
             </div>`;
