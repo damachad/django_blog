@@ -109,30 +109,40 @@ function createPostElement(post) {
 }
 
 async function loadPostDetail(params) {
+    if (!params || params.length < 2) {
+        console.error('Invalid params:', params);
+        document.getElementById('content').innerHTML = `<h1>Invalid Post ID</h1>`;
+        return;
+    }
+
     const postId = params[1];
     const content = document.getElementById('content');
-    content.innerHTML = 'Loading...'; // Show a loading message
+    content.innerHTML = 'Loading...';
 
     try {
         const response = await fetch(`/api/posts/${postId}/`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
         const post = await response.json();
 
-        // Render the post detail
         content.innerHTML = `
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
-                        <h1>${sanitize(post.title)}</h1>
-                        <h3>${sanitize(post.subtitle)}</h3>
-                        </br>
-                        <p>Created at: ${sanitize(post.creation_date)} by 
-                        <strong>${sanitize(post.author)}</strong></p>
-                        <p>${sanitize(post.body)}</p>
+                        <h1>${sanitize(post.title || 'No Title')}</h1>
+                        <h3>${sanitize(post.subtitle || 'No Subtitle')}</h3>
+                        <br />
+                        <p>Created at: ${sanitize(post.creation_date || 'Unknown')} by 
+                        <strong>${sanitize(post.author || 'Anonymous')}</strong></p>
+                        <p>${sanitize(post.body || 'No content available.')}</p>
                     </div>
                 </div>
-            </div>`
+            </div>`;
     } catch (error) {
         console.error('Error fetching or rendering post:', error);
+        content.innerHTML = `<h1>404 Not Found</h1>`;
     }
 }
 
