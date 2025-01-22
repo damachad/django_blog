@@ -1,4 +1,44 @@
-document.getElementById('view-posts').addEventListener('click', fetchAndRenderPosts);
+const navigateTo = url => {
+    history.pushState(null, null, url);
+    router();
+};
+
+const pathToRegex = path => new RegExp('^' + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + '$');
+
+const router = async () => {
+    const routes = [ 
+        { path: "/", view: fetchAndRenderPosts},
+        { path: "/create_post", view: () => '<h1>Creating a post!<h1/>'},
+        { path: "/posts/:id", view: loadPostDetail},
+    ];
+
+    const potentialMatches = routes.map(route => {
+        return {
+            route: route,
+            result: location.pathname.match(pathToRegex(route.path))
+        };
+    });
+    let match = potentialMatches.find(potentialMatch => potentialMatch.result !== null);
+
+    if (match)
+        await match.route.view(match.result);
+    else {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = '<h1>404 Not Found</h1>';
+    }
+};
+
+window.addEventListener('popstate', router());
+
+document.addEventListener('DOMContentLoaded', () => { 
+    document.body.addEventListener('click', e => {
+        if(e.target.matches("[data-link]")) {
+            e.preventDefault();
+            navigateTo(e.target.href);
+        }
+    });
+    router();
+})
 
 async function fetchAndRenderPosts() {
     try {
@@ -19,7 +59,7 @@ async function fetchPosts(url) {
 
 function renderPosts(posts) {
     const content = document.getElementById('content');
-    content.innerHTML = ''; // Clear previous content
+    content.innerHTML = '';
 
     // Create the container and row divs
     const container = document.createElement('div');
@@ -59,7 +99,7 @@ function createPostElement(post) {
                         <h5 class="card-text">${sanitize(post.subtitle)}</h5>
                         <p class="card-text">${sanitize(formatDate(post.creation_date))} by 
                             ${sanitize(post.author)} </p>
-                        <a href=""
+                        <a href="/posts/${sanitize(post.id)}"
                             target="_self" 
                             class="btn btn-primary">Read more</a>
                     </div>
@@ -68,18 +108,37 @@ function createPostElement(post) {
     return postDiv;
 }
 
+async function loadPostDetail(params) {
+    const postId = params[1];
+    const content = document.getElementById('content');
+    content.innerHTML = 'Loading...'; // Show a loading message
+
+    try {
+        const response = await fetch(`/api/posts/${postId}/`);
+        const post = await response.json();
+
+        // Render the post detail
+        content.innerHTML = `
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <h1>${sanitize(post.title)}</h1>
+                        <h3>${sanitize(post.subtitle)}</h3>
+                        </br>
+                        <p>Created at: ${sanitize(post.creation_date)} by 
+                        <strong>${sanitize(post.author)}</strong></p>
+                        <p>${sanitize(post.body)}</p>
+                    </div>
+                </div>
+            </div>`
+    } catch (error) {
+        console.error('Error fetching or rendering post:', error);
+    }
+}
+
 function sanitize(text) {
     const div = document.createElement('div');
     div.textContent = text; // Prevent XSS by escaping HTML
     return div.innerHTML;
 }
 
-
-document.addEventListener("DOMContentLoaded", () => {
-	document.body.addEventListener("click", e => {
-		if (e.target.matches("[data-link]")) {
-			e.preventDefault();
-			history.pushState(null, null, e.target.href);
-		}
-	});
-});
