@@ -1,0 +1,4 @@
+- User authentication, registration
+- Post creation, edition, deletion
+- Comment creation, edition, deletion
+- User profile check and update
