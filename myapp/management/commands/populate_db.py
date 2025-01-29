@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.utils import lorem_ipsum
-from myapp.models import CustomUser, BlogPost
+from myapp.models import CustomUser, BlogPost, Comment
 
 class Command(BaseCommand):
     help = 'Creates application data'
@@ -21,3 +21,7 @@ class Command(BaseCommand):
         # create posts & re-fetch from DB
         BlogPost.objects.bulk_create(posts)
         posts = BlogPost.objects.all()
+
+        user2 = CustomUser.objects.create(username='john', password='testing2')
+        for post in posts:
+            Comment.objects.create(post=post, author=user2, content=lorem_ipsum.sentence())
