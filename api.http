@@ -1,6 +1,12 @@
 GET http://127.0.0.1:8000/posts
 
 ###
+GET http://127.0.0.1:8000/users
+
+###
+GET http://127.0.0.1:8000/comments
+
+###
 POST http://127.0.0.1:8000/posts/
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4MDg5MDc0LCJpYXQiOjE3MzgwODg3NzQsImp0aSI6ImU3M2NmODhmNTg5YzQ2ZTQ4ZWVkNDcxODA2ZTFlZGEyIiwidXNlcl9pZCI6Mn0.3wL2gnmmIWcedNZkKWGuFiMTdgv-SjdaLGO6YxeRYO4
