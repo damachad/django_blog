@@ -4,6 +4,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from .models import CustomUser, BlogPost, Comment
 from .serializers import CustomUserSerializer, BlogPostSerializer, CommentSerializer
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 class CustomUserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
@@ -12,6 +13,7 @@ class CustomUserViewSet(viewsets.ModelViewSet):
 class BlogPostViewSet(viewsets.ModelViewSet):
     queryset = BlogPost.objects.all()
     serializer_class = BlogPostSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
