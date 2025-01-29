@@ -13,6 +13,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class BlogPostSerializer(serializers.ModelSerializer):
     comments = CommentSerializer(many=True, read_only=True)
+    author = CustomUserSerializer(read_only=True)
     class Meta:
         model = BlogPost
         fields = '__all__'
