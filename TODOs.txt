@@ -1,4 +1,5 @@
-- User authentication, registration
-- Post creation, edition, deletion
+- User registration
+- Post edition, deletion
 - Comment creation, edition, deletion
 - User profile check and update
+- Redirect to home after log in, log out or create post
