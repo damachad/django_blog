@@ -1,15 +1,15 @@
-GET http://127.0.0.1:8000/posts
+GET http://127.0.0.1:8000/api/posts
 
 ###
-GET http://127.0.0.1:8000/users
+GET http://127.0.0.1:8000/api/users
 
 ###
-GET http://127.0.0.1:8000/comments
+GET http://127.0.0.1:8000/api/comments/by-post/1
 
 ###
-POST http://127.0.0.1:8000/posts/
+POST http://127.0.0.1:8000/api/posts/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4MDg5MDc0LCJpYXQiOjE3MzgwODg3NzQsImp0aSI6ImU3M2NmODhmNTg5YzQ2ZTQ4ZWVkNDcxODA2ZTFlZGEyIiwidXNlcl9pZCI6Mn0.3wL2gnmmIWcedNZkKWGuFiMTdgv-SjdaLGO6YxeRYO4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4MTcwNDQ4LCJpYXQiOjE3MzgxNzAxNDgsImp0aSI6ImM0MGZhMWY1YjQxMDQwOWFiNjc5OTc4ODg3NmI5OTU3IiwidXNlcl9pZCI6MX0.GC92PURQIUzH1ebxf81Ocu7HsarBJ_U234PSr10GD_0
 
 {
 	"title": "Testing requests",
