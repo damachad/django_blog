@@ -1,3 +1,5 @@
+// UNUSED CODE: Refactored to multiple files
+
 const navigateTo = url => {
     history.pushState(null, null, url);
     router();
