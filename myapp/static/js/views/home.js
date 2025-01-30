@@ -30,17 +30,15 @@ function renderPosts(posts) {
 
 function createPostElement(post) {
     const postDiv = document.createElement('div');
-    postDiv.className = 'card mb-3';
+    postDiv.className = 'col-md-4 col-sm-6 mb-4';
     postDiv.innerHTML = `
-        <div class="col-md-4 col-sm-6 mb-4">
-            <div class="card h-100 shadow">
-                <div class="card-body">
-                    <h3 class="card-title">${sanitize(post.title)}</h3>
-                    <h5 class="card-text">${sanitize(post.subtitle)}</h5>
-                    <p class="card-text">${sanitize(formatDate(post.creation_date))} by 
-                        ${sanitize(post.author.username)}</p>
-                    <a href="/posts/${sanitize(post.id)}" class="btn btn-primary" data-link>Read more</a>
-                </div>
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h3 class="card-title">${sanitize(post.title)}</h3>
+                <h5 class="card-text">${sanitize(post.subtitle)}</h5>
+                <p class="card-text">${sanitize(formatDate(post.creation_date))} by 
+                    ${sanitize(post.author.username)}</p>
+                <a href="/posts/${sanitize(post.id)}" class="btn btn-primary" data-link>Read more</a>
             </div>
         </div>`;
     return postDiv;
