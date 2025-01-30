@@ -9,8 +9,8 @@ class CustomUser(AbstractUser):
 
 class BlogPost(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='posts')
-    title = models.CharField(max_length=250, unique=True)
-    subtitle = models.CharField(max_length=250)
+    title = models.CharField(max_length=100, unique=True)
+    subtitle = models.CharField(max_length=150)
     creation_date = models.DateTimeField(auto_now_add=True)
     modification_date = models.DateTimeField(auto_now=True)
     body = models.TextField()
@@ -24,7 +24,7 @@ class Comment(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='comments')
     creation_date = models.DateTimeField(auto_now_add=True)
     modification_date = models.DateTimeField(auto_now=True)
-    content = models.TextField(max_length=250)
+    content = models.TextField(max_length=300)
 
     def __str__(self):
         return f"Comment by {self.author} on {self.post}"
