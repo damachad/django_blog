@@ -4,7 +4,7 @@ from .models import CustomUser, BlogPost, Comment
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['username', 'first_name', 'last_name', 'email', 'bio', 'profile_picture']
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'bio', 'profile_picture']
         
 class CommentSerializer(serializers.ModelSerializer):
     author = CustomUserSerializer(read_only=True)
