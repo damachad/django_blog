@@ -1,6 +1,13 @@
+import { navigateTo } from '../navigation.js';
 import { getCSRFToken } from '../utils.js';
+import { loadLogin } from './login.js';
 
 export async function loadCreatePostPage() {
+    if (!localStorage.getItem('authToken')) {
+        alert('You have to log in to be able to create a post.');
+        navigateTo("/login");
+        return;
+    }
     const content = document.getElementById('content');
     content.innerHTML = `
         <div class="container">
