@@ -57,6 +57,10 @@ export async function loadLogin() {
             localStorage.setItem('refreshToken', data.refresh); // Store the refresh token
             alert('Login successful!');
             addUsernameToNav(username);
+            const logout = document.getElementById('log-out')
+            logout.innerHTML = `Log Out`
+            const login = document.getElementById('log-in')
+            login.innerHTML = ``
         } catch (error) {
             console.error('Error during login:', error);
             alert('An error occurred. Please try again.');
