@@ -10,5 +10,5 @@ router.register(r'comments', CommentViewSet)
 urlpatterns = [
     path('api/', include(router.urls)),
 	path('', spa_index, name='home'),
-	re_path(r'^.*$', spa_index, name='spa_index'),
+	#re_path(r'^.*$', spa_index, name='spa_index'),
 ]

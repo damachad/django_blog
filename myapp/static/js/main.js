@@ -225,9 +225,7 @@ async function loadCreatePostPage() {
         const title = document.getElementById('title').value.trim();
         const subtitle = document.getElementById('subtitle').value.trim();
         const body = document.getElementById('body').value.trim();
-
         const csrfToken = getCSRFToken();
-
 
         try {
             const response = await fetch('/api/posts/', {
