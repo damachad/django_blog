@@ -32,8 +32,8 @@ export async function loadPostDetail(params) {
                         <h1>${sanitize(post.title || 'No Title')}</h1>
                         <h3>${sanitize(post.subtitle || 'No Subtitle')}</h3>
                         <br />
-                        <p>Created at: ${sanitize(formatDate(post.creation_date) || 'Unknown')} by 
-                        <strong>${sanitize(post.author.username || 'Anonymous')}</strong></p>
+                        <p>Created at: ${sanitize(formatDate(post.creation_date))} by 
+                        <a href="/users/${sanitize(post.author.id)}" data-link><strong>${sanitize(post.author.username)}</strong></a></p>
                         <p>${sanitize(post.body || 'No content available.')}</p>
                         <h2>Comments</h2>
                         <div>

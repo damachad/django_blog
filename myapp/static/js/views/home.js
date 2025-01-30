@@ -37,7 +37,7 @@ function createPostElement(post) {
                 <h3 class="card-title">${sanitize(post.title)}</h3>
                 <h5 class="card-text">${sanitize(post.subtitle)}</h5>
                 <p class="card-text">${sanitize(formatDate(post.creation_date))} by 
-                    ${sanitize(post.author.username)}</p>
+                    <a href="/users/${sanitize(post.author.id)}" data-link>${sanitize(post.author.username)}</a></p>
                 <a href="/posts/${sanitize(post.id)}" class="btn btn-primary" data-link>Read more</a>
             </div>
         </div>`;
