@@ -7,6 +7,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
         fields = ['username', 'first_name', 'last_name', 'email', 'bio', 'profile_picture']
         
 class CommentSerializer(serializers.ModelSerializer):
+    author = CustomUserSerializer(read_only=True)
     class Meta:
         model = Comment
         fields = ['post', 'author', 'creation_date', 'modification_date', 'content']

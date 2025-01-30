@@ -20,8 +20,10 @@ export async function loadPostDetail(params) {
 
         const post = await response.json();
         const sanitizedComments = comments.length > 0
-        ? comments.map(comment => `<li>${sanitize(comment.content)}</li>`).join('')
-        : '<li>No comments yet. Be the first to comment!</li>';
+        ? comments.map(comment => 
+            `<p><strong>${sanitize(comment.author.username)}</strong> ${sanitize(formatDate(comment.creation_date))}</p>
+            <p>${sanitize(comment.content)}</p>`).join('')
+            : '<li>No comments yet. Be the first to comment!</li>';
 
         content.innerHTML = `
             <div class="container">
@@ -34,9 +36,9 @@ export async function loadPostDetail(params) {
                         <strong>${sanitize(post.author.username || 'Anonymous')}</strong></p>
                         <p>${sanitize(post.body || 'No content available.')}</p>
                         <h2>Comments</h2>
-                        <ul>
+                        <div>
                             ${sanitizedComments}
-                        </ul>
+                        </div>
                     </div>
                 </div>
             </div>`;
