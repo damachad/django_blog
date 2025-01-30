@@ -10,18 +10,20 @@ class Command(BaseCommand):
         user = CustomUser.objects.filter(username='admin').first()
         if not user:
             user = CustomUser.objects.create_superuser(username='admin', password='test')
+        user2 = CustomUser.objects.create(username=lorem_ipsum.words(1, common=False), password='test')
+        user3 = CustomUser.objects.create(username=lorem_ipsum.words(1, common=False), password='test')
 
         # create posts
         posts = [
-            BlogPost(author=user, title="Beautiful Books", subtitle=lorem_ipsum.words(4), body=lorem_ipsum.paragraph()),
-            BlogPost(author=user, title="A Random Post", subtitle=lorem_ipsum.words(5), body=lorem_ipsum.paragraph()),
-            BlogPost(author=user, title="Top Secret", subtitle=lorem_ipsum.words(3), body=lorem_ipsum.paragraph()),
+            BlogPost(author=user, title=lorem_ipsum.words(3, common=False), subtitle=lorem_ipsum.words(4), body=lorem_ipsum.paragraph()),
+            BlogPost(author=user2, title=lorem_ipsum.words(4, common=False), subtitle=lorem_ipsum.words(5), body=lorem_ipsum.paragraph()),
+            BlogPost(author=user3, title=lorem_ipsum.words(3, common=False), subtitle=lorem_ipsum.words(4), body=lorem_ipsum.paragraph()),
         ]
 
         # create posts & re-fetch from DB
         BlogPost.objects.bulk_create(posts)
         posts = BlogPost.objects.all()
 
-        user2 = CustomUser.objects.create(username='john', password='testing2')
+        user_commenter = CustomUser.objects.create(username=lorem_ipsum.words(1, common=False), password='test')
         for post in posts:
-            Comment.objects.create(post=post, author=user2, content=lorem_ipsum.sentence())
+            Comment.objects.create(post=post, author=user_commenter, content=lorem_ipsum.sentence())
