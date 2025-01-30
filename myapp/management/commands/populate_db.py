@@ -13,9 +13,9 @@ class Command(BaseCommand):
 
         # create posts
         posts = [
-            BlogPost(author=user, title="Beautiful Books", subtitle=lorem_ipsum.sentence(), body=lorem_ipsum.paragraph()),
-            BlogPost(author=user, title="A Random Post", subtitle=lorem_ipsum.sentence(), body=lorem_ipsum.paragraph()),
-            BlogPost(author=user, title="Top Secret", subtitle=lorem_ipsum.sentence(), body=lorem_ipsum.paragraph()),
+            BlogPost(author=user, title="Beautiful Books", subtitle=lorem_ipsum.words(4), body=lorem_ipsum.paragraph()),
+            BlogPost(author=user, title="A Random Post", subtitle=lorem_ipsum.words(5), body=lorem_ipsum.paragraph()),
+            BlogPost(author=user, title="Top Secret", subtitle=lorem_ipsum.words(3), body=lorem_ipsum.paragraph()),
         ]
 
         # create posts & re-fetch from DB
